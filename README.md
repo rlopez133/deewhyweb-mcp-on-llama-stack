@@ -36,6 +36,7 @@ From another terminal setup an SSH tunnel listening on port 8001
 ## Deploy the node.js mcp server app
 
 Run npm install
+
 `npm install`
 
 Run the node.js app with supergateway
