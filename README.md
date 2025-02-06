@@ -34,6 +34,29 @@ curl -X POST -H "Content-Type: application/json" \
  localhost:5051/v1/toolgroups 
  ```
 
+Test the mcp connection, you should see getforcast as the identier, and the parameters populated correctly.
+
+`llama-stack-client toolgroups get builtin::weather `
+```
+┏━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━┓
+┃ description           ┃ identifier  ┃ metadata              ┃ parameters            ┃ provider_id           ┃ provider_resource_id ┃ tool_host             ┃ toolgroup_id     ┃ type ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━┩
+│ Get weather forecast  │ getforecast │ {'endpoint':          │ [Parameter(descripti… │ model-context-protoc… │ getforecast          │ model_context_protoc… │ builtin::weather │ tool │
+│ for a location        │             │ 'http://host.contain… │ of the location',     │                       │                      │                       │                  │      │
+│                       │             │                       │ name='latitude',      │                       │                      │                       │                  │      │
+│                       │             │                       │ parameter_type='numb… │                       │                      │                       │                  │      │
+│                       │             │                       │ required=True,        │                       │                      │                       │                  │      │
+│                       │             │                       │ default=None),        │                       │                      │                       │                  │      │
+│                       │             │                       │ Parameter(descriptio… │                       │                      │                       │                  │      │
+│                       │             │                       │ of the location',     │                       │                      │                       │                  │      │
+│                       │             │                       │ name='longitude',     │                       │                      │                       │                  │      │
+│                       │             │                       │ parameter_type='numb… │                       │                      │                       │                  │      │
+│                       │             │                       │ required=True,        │                       │                      │                       │                  │      │
+│                       │             │                       │ default=None)]        │                       │                      │                       │                  │      │
+└───────────────────────┴─────────────┴───────────────────────┴───────────────────────┴───────────────────────┴──────────────────────┴───────────────────────┴──────────────────┴──────┘
+```
+
+
 Test with python
 
 
