@@ -1,22 +1,39 @@
+# MCP on LLAMA-STACK
+
+Instructions for configuring llama-stack to integrate with a locally running MCP server. The model used is served by an instance of RHEL AI on demo.redhat.com, connected via SSH tunnel.
+
+## Provision vm
+
 Spin up an instance of https://catalog.demo.redhat.com/catalog?utm_source=webapp&utm_medium=share-link&search=rhel+ai&item=babylon-catalog-prod%2Frhdp.rhel-ai-vm.prod  select a g6.12xlarge instance
 
-ilab config init
+Once the VM is ready ssh into the VM.
 
-Select Nividia -> 4xL0S
+## Configure ilab
+
+`ilab config init`
+
+Select Nividia [1] -> NVIDIA L40S X4 [8]
+
+## Download the granite-3.1-8b-instruct model
 
 Grab your hf token from hugging face
 
+
 `ilab model download -rp ibm-granite/granite-3.1-8b-instruct --hf-token <token>`
+
+## Serve the model
 
 `ilab model serve --model-path  /var/home/instruct/.cache/instructlab/models/ibm-granite/granite-3.1-8b-instruct/ --gpus 4 -- --served-model-name llama31-8b`
 
-From another terminalm setup an SSH tunnel listening on port 8001
+From another terminal setup an SSH tunnel listening on port 8001
 
 `ssh -L 8001:localhost:8000 instruct@bastion.xxxx.sandboxxxx.opentlc.com`
 
-Run llama stack with podman:
+## Run llama stack with podman
 
 `podman run -it -p 5051:5051 -v ./run.yaml:/tmp/run.yaml:Z llamastack/distribution-remote-vllm --yaml-config /tmp/run.yaml --port 5051 --env INFERENCE_MODEL=llama31-8b --env VLLM_URL=http://host.containers.internal:8001/v1`
+
+## Deploy the node.js mcp server app
 
 Run npm install
 `npm install`
@@ -25,7 +42,8 @@ Run the node.js app with supergateway
 
 `npx -y supergateway --stdio "node index.js"`
 
-Create the mcp toolgroup 
+
+## Create the mcp toolgroup 
 
 ```
 curl -X POST -H "Content-Type: application/json" \
@@ -57,7 +75,7 @@ Test the mcp connection, you should see getforcast as the identier, and the para
 ```
 
 
-Test with python
+## Test with python
 
 
 `python -m mcp localhost 5051`
