@@ -41,7 +41,7 @@ Run npm install
 
 Run the node.js app with supergateway
 
-`npx -y supergateway --stdio "node index.js"`
+`npx -y supergateway --stdio "node app/index.js"`
 
 
 ## Create the mcp toolgroup 
