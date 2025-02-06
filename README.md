@@ -1,5 +1,10 @@
 # MCP on LLAMA-STACK
 
+# Pre-reqs
+
+* podman or docker
+* llama-stack-client  (pip install llama-stack-client)
+
 Instructions for configuring llama-stack to integrate with a locally running MCP server. The model used is served by an instance of RHEL AI on demo.redhat.com, connected via SSH tunnel.
 
 ## Provision vm
