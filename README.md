@@ -1,8 +1,7 @@
 # MCP on LLAMA-STACK
 
 # Pre-reqs
-
-* podman or docker
+* node.js (tested with v20.17.0)
 * llama-stack-client  (pip install llama-stack-client)
 * [Ollama](https://ollama.com/)
 
