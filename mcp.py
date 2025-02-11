@@ -43,18 +43,17 @@ def main(host: str, port: int):
         },
         toolgroups=(
             [
-                "builtin::weather"
+                "mcp::weather"
             ]
         ),
         tool_choice="auto",
-        tool_prompt_format="json",
         input_shields=available_shields if available_shields else [],
         output_shields=available_shields if available_shields else [],
         enable_session_persistence=False,
     )
     agent = Agent(client, agent_config)
     user_prompts = [
-        "What is the weather in Portsmouth New Hampshire?",
+        "What's the weather at Portsmouth NH?",
     ]
 
     session_id = agent.create_session("test-session")
