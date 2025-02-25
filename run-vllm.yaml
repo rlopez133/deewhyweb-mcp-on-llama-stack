@@ -29,10 +29,10 @@ providers:
         type: sqlite
         namespace: null
         db_path: ${env.SQLITE_STORE_DIR:~/.llama/distributions/remote-vllm}/faiss_store.db
-  # safety: []
-  # - provider_id: llama-guard
-  #   provider_type: inline::llama-guard
-  #   config: {}
+  safety:
+  - provider_id: llama-guard
+    provider_type: inline::llama-guard
+    config: {}
   agents:
   - provider_id: meta-reference
     provider_type: inline::meta-reference
@@ -56,6 +56,13 @@ providers:
   - provider_id: basic
     provider_type: inline::basic
     config: {}
+  - provider_id: llm-as-judge
+    provider_type: inline::llm-as-judge
+    config: {}
+  - provider_id: braintrust
+    provider_type: inline::braintrust
+    config:
+      openai_api_key: ${env.OPENAI_API_KEY:}
   telemetry:
   - provider_id: meta-reference
     provider_type: inline::meta-reference
@@ -87,8 +94,7 @@ metadata_store:
   type: sqlite
   db_path: ${env.SQLITE_STORE_DIR:~/.llama/distributions/remote-vllm}/registry.db
 models:
-- metadata: 
-    llama_model: meta-llama/Llama-3-8B
+- metadata: {}
   model_id: ${env.INFERENCE_MODEL}
   provider_id: vllm-inference
   model_type: llm
@@ -102,10 +108,12 @@ vector_dbs: []
 datasets: []
 scoring_fns: []
 eval_tasks: []
-tool_groups: []
-# - toolgroup_id: builtin::websearch
-#   provider_id: tavily-search
-# - toolgroup_id: builtin::rag
-#   provider_id: rag-runtime
-# - toolgroup_id: builtin::code_interpreter
-#   provider_id: code-interpreter
+tool_groups:
+- toolgroup_id: builtin::websearch
+  provider_id: tavily-search
+- toolgroup_id: builtin::rag
+  provider_id: rag-runtime
+- toolgroup_id: builtin::code_interpreter
+  provider_id: code-interpreter
+server:
+  port: 8321

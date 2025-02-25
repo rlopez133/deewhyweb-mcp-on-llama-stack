@@ -1,0 +1,6 @@
+model_list:
+  - model_name: ibm-granite/granite-3.2-8b-instruct-preview
+    litellm_params:
+      model: openai/ibm-granite/granite-3.2-8b-instruct-preview
+      api_base: http://host.containers.internal:8001/v1
+      api_key: none

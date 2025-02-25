@@ -53,7 +53,7 @@ def main(host: str, port: int):
     )
     agent = Agent(client, agent_config)
     user_prompts = [
-        "What's the weather at Portsmouth NH?",
+        "Based on the weather this week in New York, what's the best day to walk around the city?",
     ]
 
     session_id = agent.create_session("test-session")

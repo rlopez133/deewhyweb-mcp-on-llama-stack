@@ -28,12 +28,12 @@ async function makeNWSRequest(url) {
 }
 
 
-server.tool("getforecast", "Get weather forecast for a location", {
-    latitude: z.number().min(-90).max(90).describe("Latitude of the location"),
-    longitude: z.number().min(-180).max(180).describe("Longitude of the location"),
+server.tool("getforecast", "Get real time weather forecast for a location", {
+    latitude: z.string().describe("Latitude  of the location"),
+    longitude: z.string().describe("Longitude of the location"),
 }, async ({ latitude, longitude }) => {
     // Get grid point data
-    const pointsUrl = `${NWS_API_BASE}/points/${latitude.toFixed(4)},${longitude.toFixed(4)}`;
+    const pointsUrl = `${NWS_API_BASE}/points/${parseFloat(latitude).toFixed(4)},${parseFloat(longitude).toFixed(4)}`;
     const pointsData = await makeNWSRequest(pointsUrl);
     if (!pointsData) {
         return {
