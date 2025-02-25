@@ -18,7 +18,7 @@ Serve the meta-llama/Llama-3.2-8B-Instruct model
 
 `ssh -L 8001:localhost:8000 instruct@bastion.xxxx.sandboxxxx.opentlc.com`
 
-## Build llama-stack for Ollama provider
+## Build llama-stack for remote vllm provider
 
 Clone the llama-stack repository
 
