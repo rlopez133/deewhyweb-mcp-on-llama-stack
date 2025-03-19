@@ -46,7 +46,7 @@ def main(host: str, port: int):
     )
     agent = Agent(client, agent_config)
     user_prompts = [
-        "Based on the weather this week in New York, what's the best day to walk around the city?",
+        "Based on the weather this week in New York, what's the best day to walk around the city? Please use latitude 40.7128 and longitude -74.0060.",
     ]
     session_id = agent.create_session("test-session")
     for prompt in user_prompts:
