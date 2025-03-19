@@ -30,7 +30,7 @@ def main(host: str, port: int):
         print(f"Using model: {selected_model}")
     agent_config = AgentConfig(
         model=selected_model,
-        instructions="You are a helpful assistant",
+        instructions="You are a helpful assistant. When asked about weather, use the getforecast tool with latitude and longitude parameters.",
         sampling_params={
             "strategy": {"type": "top_p", "temperature": 1.0, "top_p": 0.9},
         },
